@@ -13,14 +13,13 @@ CREATE TABLE `school_campus`  (
     `introduction` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '介绍',
     `location` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '地址',
     `found_date` date NOT NULL COMMENT '建校时间',
-    `tenant_id` bigint NOT NULL COMMENT '租户编号',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
-    PRIMARY KEY (`id`) USING BTREE,
-    CONSTRAINT `school_campus_fk_1` FOREIGN KEY (`tenant_id`) REFERENCES `system_tenant` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
+    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '校区表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -36,6 +35,7 @@ CREATE TABLE `school_classroom`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_classrrom_fk_1` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '教室表' ROW_FORMAT = Dynamic;
@@ -56,6 +56,7 @@ CREATE TABLE `school_subject`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_subject_fk_1` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '科目表' ROW_FORMAT = Dynamic;
@@ -75,6 +76,7 @@ CREATE TABLE `school_course`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_course_fk_1` FOREIGN KEY (`subject_id`) REFERENCES `school_subject` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '课程表' ROW_FORMAT = Dynamic;
@@ -96,6 +98,7 @@ CREATE TABLE `school_course_fee`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_course_fee_fk_1` FOREIGN KEY (`course_id`) REFERENCES `school_course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '课程收费表' ROW_FORMAT = Dynamic;
@@ -119,6 +122,7 @@ CREATE TABLE `school_class`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_class_fk_1` FOREIGN KEY (`course_id`) REFERENCES `school_course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_class_fk_2` FOREIGN KEY (`head_teacher_id`) REFERENCES `school_teacher` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -138,6 +142,7 @@ CREATE TABLE `school_teacher`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_teacher_fk_1` FOREIGN KEY (`user_id`) REFERENCES `system_users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_teacher_fk_2` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -163,6 +168,7 @@ CREATE TABLE `school_student`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_student_fk_1` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '学生表' ROW_FORMAT = Dynamic;
@@ -181,6 +187,7 @@ CREATE TABLE `school_class_rollcall`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_class_rollcall_fk_1` FOREIGN KEY (`class_id`) REFERENCES `school_class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_class_rollcall_fk_2` FOREIGN KEY (`student_id`) REFERENCES `school_student` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -204,6 +211,7 @@ CREATE TABLE `school_class_student`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_class_student_fk_1` FOREIGN KEY (`class_id`) REFERENCES `school_class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_class_student_fk_2` FOREIGN KEY (`student_id`) REFERENCES `school_student` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -229,6 +237,7 @@ CREATE TABLE `school_timetable`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_timetable_fk_1` FOREIGN KEY (`class_id`) REFERENCES `school_class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_timetable_fk_2` FOREIGN KEY (`teacher_id`) REFERENCES `school_student` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -250,29 +259,10 @@ CREATE TABLE `school_holiday`  (
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_holiday_fk_1` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '假期表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for school_notice
--- ----------------------------
-DROP TABLE IF EXISTS `school_notice`;
-CREATE TABLE `school_notice`  (
-    `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-    `title` varchar(64) NOT NULL DEFAULT '' COMMENT '标题',
-    `summary` varchar(64) NOT NULL DEFAULT '' COMMENT '摘要',
-    `detial` varchar(64) NOT NULL DEFAULT '' COMMENT '详情',
-    `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '通知类型',
-    `tenant_id` bigint NOT NULL COMMENT '租户编号',
-    `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
-    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新者',
-    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
-    PRIMARY KEY (`id`) USING BTREE,
-    CONSTRAINT `school_notice_fk_1` FOREIGN KEY (`tenant_id`) REFERENCES `system_tenant` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '通知表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- 字典
@@ -310,19 +300,610 @@ COMMIT;
 BEGIN;
 INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1301, '学校管理', '', 1, 60, 0, '/school', 'ep:school', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
 
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1302, '校区', '', 2, 0, 1301, 'campus', 'ep:campus', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1303, '教室', '', 2, 1, 1301, 'classroom', 'ep:classroom', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1304, '科目', '', 2, 2, 1301, 'subject', 'ep:subject', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1305, '课程', '', 2, 3, 1301, 'course', 'ep:course', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1306, '课程收费', '', 2, 4, 1301, 'course_fee', 'ep:course_fee', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1307, '班级', '', 2, 5, 1301, 'class', 'ep:class', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1308, '教室', '', 2, 6, 1301, 'teacher', 'ep:teacher', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1309, '学生', '', 2, 7, 1301, 'student', 'ep:student', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1310, '点名', '', 2, 8, 1301, 'class_rollcall', 'ep:class_rollcall', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1311, '班级学生', '', 2, 9, 1301, 'class_student', 'ep:class_student', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1312, '课程表', '', 2, 10, 1301, 'timetable', 'ep:timetable', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1313, '假期', '', 2, 11, 1301, 'holiday', 'ep:holiday', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
-INSERT INTO `system_menu` (`id`, `name`, `permission`, `type`, `sort`, `parent_id`, `path`, `icon`, `component`, `status`, `visible`, `keep_alive`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES (1314, '通知', '', 2, 12, 1301, 'notice', 'ep:notice', NULL, 0, b'1', b'1', 'admin', '2022-09-03 17:56:22', '1', '2022-09-03 17:56:39', b'0');
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程管理', '', 2, 0, 1301,
+    'timetable', '', 'school/timetable/index', 0
+);
 
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
 
-COMMIT:
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程查询', 'school:timetable:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程创建', 'school:timetable:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程更新', 'school:timetable:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程删除', 'school:timetable:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程导出', 'school:timetable:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目管理', '', 2, 0, 1301,
+    'subject', '', 'school/subject/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目查询', 'school:subject:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目创建', 'school:subject:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目更新', 'school:subject:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目删除', 'school:subject:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '科目导出', 'school:subject:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室管理', '', 2, 0, 1301,
+    'teacher', '', 'school/teacher/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室查询', 'school:teacher:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室创建', 'school:teacher:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室更新', 'school:teacher:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室删除', 'school:teacher:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室导出', 'school:teacher:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区管理', '', 2, 0, 1301,
+    'campus', '', 'school/campus/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区查询', 'school:campus:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区创建', 'school:campus:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区更新', 'school:campus:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区删除', 'school:campus:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '校区导出', 'school:campus:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生管理', '', 2, 0, 1301,
+    'class-student', '', 'school/classStudent/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生查询', 'school:class-student:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生创建', 'school:class-student:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生更新', 'school:class-student:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生删除', 'school:class-student:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级学生导出', 'school:class-student:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室管理', '', 2, 0, 1301,
+    'classroom', '', 'school/classroom/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室查询', 'school:classroom:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室创建', 'school:classroom:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室更新', 'school:classroom:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室删除', 'school:classroom:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '教室导出', 'school:classroom:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级管理', '', 2, 0, 1301,
+    'clz', '', 'school/clz/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级查询', 'school:clz:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级创建', 'school:clz:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级更新', 'school:clz:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级删除', 'school:clz:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '班级导出', 'school:clz:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程管理', '', 2, 0, 1301,
+    'course', '', 'school/course/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程查询', 'school:course:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程创建', 'school:course:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程更新', 'school:course:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程删除', 'school:course:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程导出', 'school:course:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费管理', '', 2, 0, 1301,
+    'course-fee', '', 'school/courseFee/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费查询', 'school:course-fee:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费创建', 'school:course-fee:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费更新', 'school:course-fee:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费删除', 'school:course-fee:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '课程收费导出', 'school:course-fee:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期管理', '', 2, 0, 1301,
+    'holiday', '', 'school/holiday/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期查询', 'school:holiday:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期创建', 'school:holiday:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期更新', 'school:holiday:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期删除', 'school:holiday:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '假期导出', 'school:holiday:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+-- 菜单 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生管理', '', 2, 0, 1301,
+    'student', '', 'school/student/index', 0
+);
+
+-- 按钮父菜单ID
+-- 暂时只支持 MySQL。如果你是 Oracle、PostgreSQL、SQLServer 的话，需要手动修改 @parentId 的部分的代码
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生查询', 'school:student:query', 3, 1, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生创建', 'school:student:create', 3, 2, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生更新', 'school:student:update', 3, 3, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生删除', 'school:student:delete', 3, 4, @parentId,
+    '', '', '', 0
+);
+INSERT INTO system_menu(
+    name, permission, type, sort, parent_id,
+    path, icon, component, status
+)
+VALUES (
+    '学生导出', 'school:student:export', 3, 5, @parentId,
+    '', '', '', 0
+);
+
+COMMIT;

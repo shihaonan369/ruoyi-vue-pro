@@ -1,0 +1,50 @@
+package cn.iocoder.yudao.module.school.controller.admin.clz.vo;
+
+import lombok.*;
+import java.util.*;
+import io.swagger.annotations.*;
+import javax.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
+
+/**
+* 班级 Base VO，提供给添加、修改、详细的子 VO 使用
+* 如果子 VO 存在差异的字段，请不要添加到这里，影响 Swagger 文档生成
+*/
+@Data
+public class ClzBaseVO {
+
+    @ApiModelProperty(value = "名称", required = true)
+    @NotNull(message = "名称不能为空")
+    private String name;
+
+    @ApiModelProperty(value = "名称", required = true)
+    @NotNull(message = "名称不能为空")
+    private Integer maxStudents;
+
+    @ApiModelProperty(value = "状态", required = true)
+    @NotNull(message = "状态不能为空")
+    private String status;
+
+    @ApiModelProperty(value = "计划开班日期")
+    @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    private Date planOpenDate;
+
+    @ApiModelProperty(value = "开班时间")
+    @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    private Date openDate;
+
+    @ApiModelProperty(value = "备注", required = true)
+    @NotNull(message = "备注不能为空")
+    private String remark;
+
+    @ApiModelProperty(value = "课程编号", required = true)
+    @NotNull(message = "课程编号不能为空")
+    private Long courseId;
+
+    @ApiModelProperty(value = "班主任编号", required = true)
+    @NotNull(message = "班主任编号不能为空")
+    private Long headTeacherId;
+
+}

@@ -103,5 +103,13 @@ export enum DICT_TYPE {
   PAY_ORDER_STATUS = 'pay_order_status', // 商户支付订单状态
   PAY_ORDER_REFUND_STATUS = 'pay_order_refund_status', // 商户支付订单退款状态
   PAY_REFUND_ORDER_STATUS = 'pay_refund_order_status', // 退款订单状态
-  PAY_REFUND_ORDER_TYPE = 'pay_refund_order_type' // 退款订单类别
+  PAY_REFUND_ORDER_TYPE = 'pay_refund_order_type', // 退款订单类别
+
+  // ========== SCHOOL 模块 ==========
+  SCHOOL_CAMPUS_TYPE = 'school_campus_type',
+  SCHOOL_NOTICE_TYPE = 'school_notice_type',
+  SCHOOL_TEACHING_MODE = 'school_teaching_mode',
+  SCHOOL_APPOINTMENT = 'school_appointment',
+  SCHOOL_COURSE_FEE_TYPE = 'school_course_fee_type',
+  SCHOOL_TIMETABLE_TYPE = 'school_timetable_type'
 }
