@@ -32,3 +32,8 @@ export const deleteHolidayApi = async (id: number) => {
 export const exportHolidayApi = async (params: HolidayExcelReqVO) => {
   return await request.download({ url: '/school/holiday/export-excel', params })
 }
+
+// 查询假期选项
+export const getHolidayOptionsApi = async () => {
+  return await request.get({ url: '/school/holiday/options' })
+}

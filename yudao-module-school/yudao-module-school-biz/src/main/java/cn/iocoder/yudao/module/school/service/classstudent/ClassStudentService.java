@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.classstudent;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.classstudent.ClassStudentDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,20 @@ public interface ClassStudentService {
      * @return 班级学生列表
      */
     List<ClassStudentDO> getClassStudentList(ClassStudentExportReqVO exportReqVO);
+
+    /**
+     * 获取班级学生选项
+     *
+     * @return 班级学生选项
+     */
+    List<ClassStudentDO> getClassStudentOptions();
+
+    /**
+     * 通过班级编号获取学生列表
+     *
+     * @param reqVO 查询条件
+     * @return 班级学生列表
+     */
+    List<ClassStudentDO> getClassStudentList(ClassStudentBaseVO reqVO);
 
 }

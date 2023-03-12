@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as TeacherApi from '@/api/school/teacher'
-import type { TeacherVO } from '@/api/school/Teacher/types'
+import type { TeacherVO } from '@/api/school/teacher/types'
 import { FormExpose } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTable } from '@/hooks/web/useTable'

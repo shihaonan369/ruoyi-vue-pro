@@ -2,7 +2,11 @@ package cn.iocoder.yudao.module.school.service.clz;
 
 import java.util.*;
 import javax.validation.*;
+
+import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.ClassStudentBaseVO;
 import cn.iocoder.yudao.module.school.controller.admin.clz.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import cn.iocoder.yudao.module.school.dal.dataobject.classstudent.ClassStudentDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.clz.ClzDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +70,20 @@ public interface ClzService {
      * @return 班级列表
      */
     List<ClzDO> getClzList(ClzExportReqVO exportReqVO);
+
+    /**
+     * 获取班级选项
+     *
+     * @return 班级选项
+     */
+    List<ClzDO> getClzOptions();
+
+    /**
+     * 获取班级列表
+     *
+     * @param reqVO 查询条件
+     * @return 班级列表
+     */
+    List<ClzDO> getClzList(ClzBaseVO reqVO);
 
 }

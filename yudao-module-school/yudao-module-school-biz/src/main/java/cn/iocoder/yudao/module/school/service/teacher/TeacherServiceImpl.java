@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.school.service.teacher;
 
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +18,7 @@ import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionU
 import static cn.iocoder.yudao.module.school.enums.ErrorCodeConstants.*;
 
 /**
- * 教室 Service 实现类
+ * 教师 Service 实现类
  *
  * @author 芋道源码
  */
@@ -77,6 +79,11 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<TeacherDO> getTeacherList(TeacherExportReqVO exportReqVO) {
         return teacherMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<TeacherDO> getTeacherOptions() {
+        return teacherMapper.selectList(new QueryWrapper<TeacherDO>().select("id", "name"));
     }
 
 }

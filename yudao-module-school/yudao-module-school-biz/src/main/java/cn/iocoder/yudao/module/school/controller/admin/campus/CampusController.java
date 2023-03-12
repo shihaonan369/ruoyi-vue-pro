@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.module.school.controller.admin.campus;
 
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -95,6 +96,14 @@ public class CampusController {
         // 导出 Excel
         List<CampusExcelVO> datas = CampusConvert.INSTANCE.convertList02(list);
         ExcelUtils.write(response, "校区.xls", "数据", CampusExcelVO.class, datas);
+    }
+
+    @GetMapping("/options")
+    @ApiOperation("选项")
+    @PreAuthorize("@ss.hasPermission('school:campus:query')")
+    public CommonResult<List<OptionVo>> getCampusOptions() {
+        List<CampusDO> list = campusService.getCampusOptions();
+        return success(CampusConvert.INSTANCE.convertOptionList(list));
     }
 
 }

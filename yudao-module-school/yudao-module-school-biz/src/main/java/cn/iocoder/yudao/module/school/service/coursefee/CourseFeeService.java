@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.coursefee;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.coursefee.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.coursefee.CourseFeeDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,12 @@ public interface CourseFeeService {
      * @return 课程收费列表
      */
     List<CourseFeeDO> getCourseFeeList(CourseFeeExportReqVO exportReqVO);
+
+    /**
+     * 获取课程收费选项
+     *
+     * @return 课程收费选项
+     */
+    List<CourseFeeDO> getCourseFeeOptions();
 
 }

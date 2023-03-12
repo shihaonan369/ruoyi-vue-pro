@@ -1,5 +1,9 @@
 package cn.iocoder.yudao.module.school.service.clz;
 
+import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.ClassStudentBaseVO;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import cn.iocoder.yudao.module.school.dal.dataobject.classstudent.ClassStudentDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +81,16 @@ public class ClzServiceImpl implements ClzService {
     @Override
     public List<ClzDO> getClzList(ClzExportReqVO exportReqVO) {
         return clzMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<ClzDO> getClzOptions() {
+        return clzMapper.selectList(new QueryWrapper<ClzDO>().select("id", "name"));
+    }
+
+    @Override
+    public List<ClzDO> getClzList(ClzBaseVO entity) {
+        return clzMapper.selectList(entity);
     }
 
 }

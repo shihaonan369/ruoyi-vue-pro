@@ -1,5 +1,12 @@
 package cn.iocoder.yudao.module.school.controller.admin.clz;
 
+import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.ClassStudentBaseVO;
+import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.ClassStudentRespVO;
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
+import cn.iocoder.yudao.module.school.convert.classstudent.ClassStudentConvert;
+import cn.iocoder.yudao.module.school.convert.subject.SubjectConvert;
+import cn.iocoder.yudao.module.school.dal.dataobject.classstudent.ClassStudentDO;
+import cn.iocoder.yudao.module.school.dal.dataobject.subject.SubjectDO;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -95,6 +102,22 @@ public class ClzController {
         // 导出 Excel
         List<ClzExcelVO> datas = ClzConvert.INSTANCE.convertList02(list);
         ExcelUtils.write(response, "班级.xls", "数据", ClzExcelVO.class, datas);
+    }
+
+    @GetMapping("/options")
+    @ApiOperation("选项")
+    @PreAuthorize("@ss.hasPermission('school:clz:query')")
+    public CommonResult<List<OptionVo>> getClzOptions() {
+        List<ClzDO> list = clzService.getClzOptions();
+        return success(ClzConvert.INSTANCE.convertOptionList(list));
+    }
+
+    @GetMapping("/list-by-filter")
+    @ApiOperation("获取班级列表")
+    @PreAuthorize("@ss.hasPermission('school:clz:query')")
+    public CommonResult<List<ClzRespVO>> getClzList(@Valid ClzBaseVO reqVO) {
+        List<ClzDO> list = clzService.getClzList(reqVO);
+        return success(ClzConvert.INSTANCE.convertList(list));
     }
 
 }

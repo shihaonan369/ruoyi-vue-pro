@@ -39,10 +39,8 @@ public class SubjectDO extends BaseDO {
     private Integer classHour;
     /**
      * 是否展示
-     *
-     * 枚举 {@link TODO infra_boolean_string 对应的类}
      */
-    private String isShow;
+    private Integer isShow;
     /**
      * 校区编号
      */

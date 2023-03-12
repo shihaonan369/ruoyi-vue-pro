@@ -32,3 +32,8 @@ export const deleteClassroomApi = async (id: number) => {
 export const exportClassroomApi = async (params: ClassroomExcelReqVO) => {
   return await request.download({ url: '/school/classroom/export-excel', params })
 }
+
+// 查询教室选项
+export const getClassroomOptionsApi = async () => {
+  return await request.get({ url: '/school/classroom/options' })
+}

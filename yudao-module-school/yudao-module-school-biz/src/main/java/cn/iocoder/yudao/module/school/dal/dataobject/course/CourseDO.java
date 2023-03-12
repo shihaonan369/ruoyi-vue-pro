@@ -35,10 +35,8 @@ public class CourseDO extends BaseDO {
     private String introduction;
     /**
      * 教学模式
-     *
-     * 枚举 {@link TODO school_teaching_mode 对应的类}
      */
-    private String teachingMode;
+    private Integer teachingMode;
     /**
      * 科目编号
      */

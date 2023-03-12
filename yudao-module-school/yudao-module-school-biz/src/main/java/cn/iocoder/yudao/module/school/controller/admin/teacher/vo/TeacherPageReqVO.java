@@ -5,7 +5,7 @@ import java.util.*;
 import io.swagger.annotations.*;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
 
-@ApiModel("管理后台 - 教室分页 Request VO")
+@ApiModel("管理后台 - 教师分页 Request VO")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

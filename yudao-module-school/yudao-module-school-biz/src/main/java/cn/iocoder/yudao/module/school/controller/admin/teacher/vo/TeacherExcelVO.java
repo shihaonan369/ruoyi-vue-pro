@@ -7,7 +7,7 @@ import io.swagger.annotations.*;
 import com.alibaba.excel.annotation.ExcelProperty;
 
 /**
- * 教室 Excel VO
+ * 教师 Excel VO
  *
  * @author 芋道源码
  */

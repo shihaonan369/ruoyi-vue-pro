@@ -15,6 +15,9 @@ import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_
 @Data
 public class ClzBaseVO {
 
+    @ApiModelProperty(value = "班级编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "名称", required = true)
     @NotNull(message = "名称不能为空")
     private String name;
@@ -25,7 +28,7 @@ public class ClzBaseVO {
 
     @ApiModelProperty(value = "状态", required = true)
     @NotNull(message = "状态不能为空")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "计划开班日期")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)

@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.school.service.campus;
 
+import cn.iocoder.yudao.framework.mybatis.core.query.QueryWrapperX;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +79,11 @@ public class CampusServiceImpl implements CampusService {
     @Override
     public List<CampusDO> getCampusList(CampusExportReqVO exportReqVO) {
         return campusMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<CampusDO> getCampusOptions() {
+        return campusMapper.selectList(new QueryWrapper<CampusDO>().select("id", "name"));
     }
 
 }

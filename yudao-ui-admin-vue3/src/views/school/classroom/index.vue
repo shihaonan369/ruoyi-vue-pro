@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import * as ClassroomApi from '@/api/school/classroom'
-import type { ClassroomVO } from '@/api/school/Classroom/types'
+import type { ClassroomVO } from '@/api/school/classroom/types'
 import { FormExpose } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTable } from '@/hooks/web/useTable'
 import { ElMessage } from 'element-plus'
 import { ref, unref } from 'vue'
-import { allSchemas, rules } from './classroom.data'
+import { allSchemas, campusOptions, rules } from './classroom.data'
 const { t } = useI18n() // 国际化
 
 // ========== 列表相关 ==========
@@ -140,6 +140,9 @@ getList()
           <Icon icon="ep:delete" class="mr-1px" /> {{ t('action.del') }}
         </el-button>
       </template>
+      <template #campusId="{ row }">
+        {{ campusOptions.find((r) => r.id === row.campusId)?.label }}
+      </template>
     </Table>
   </ContentWrap>
 
@@ -156,7 +159,11 @@ getList()
       v-if="actionType === 'detail'"
       :schema="allSchemas.detailSchema"
       :data="detailRef"
-    />
+    >
+      <template #campusId="{ row }">
+        {{ campusOptions.find((r) => r.id === row.campusId)?.label }}
+      </template>
+    </Descriptions>
     <!-- 操作按钮 -->
     <template #footer>
       <el-button

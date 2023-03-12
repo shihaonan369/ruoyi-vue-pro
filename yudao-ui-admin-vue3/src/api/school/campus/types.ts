@@ -4,7 +4,7 @@ export type CampusVO = {
   campusType: string
   phone: string
   brandName: string
-  logoURL: string
+  logoUrl: string
   slogan: string
   introduction: string
   location: string

@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.campus;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.campus.vo.*;
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
 import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,12 @@ public interface CampusService {
      * @return 校区列表
      */
     List<CampusDO> getCampusList(CampusExportReqVO exportReqVO);
+
+    /**
+     * 获取校区选项
+     *
+     * @return 校区选项
+     */
+    List<CampusDO> getCampusOptions();
 
 }

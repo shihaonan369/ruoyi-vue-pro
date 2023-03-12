@@ -1,11 +1,11 @@
 export type ClassStudentVO = {
-  id: number
-  number: number
-  classHour: number
-  totalClassHour: number
-  enterDate: Date
-  classId: number
-  studentId: number
+  id?: number
+  number?: number
+  classHour?: number
+  totalClassHour?: number
+  enterDate?: Date
+  classId?: number
+  studentId?: number
 }
 
 export type ClassStudentPageReqVO = {

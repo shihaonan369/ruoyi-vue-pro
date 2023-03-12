@@ -32,3 +32,8 @@ export const deleteCourseApi = async (id: number) => {
 export const exportCourseApi = async (params: CourseExcelReqVO) => {
   return await request.download({ url: '/school/course/export-excel', params })
 }
+
+// 查询课程选项
+export const getCourseOptionsApi = async () => {
+  return await request.get({ url: '/school/course/options' })
+}

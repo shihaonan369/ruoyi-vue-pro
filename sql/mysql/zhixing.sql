@@ -5,10 +5,10 @@ DROP TABLE IF EXISTS `school_campus`;
 CREATE TABLE `school_campus`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
     `name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
-    `campus_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '校区类型',
+    `campus_type` tinyint NOT NULL DEFAULT 1 COMMENT '校区类型',
     `phone` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电话',
     `brand_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '品牌名称', 
-    `logoURL` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'logoURL',
+    `logo_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'logoUrl',
     `slogan` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '口号',
     `introduction` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '介绍',
     `location` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '地址',
@@ -49,7 +49,7 @@ CREATE TABLE `school_subject`  (
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
     `remark` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `class_hour` smallint NULL DEFAULT 0 COMMENT '课时',
-    `is_show` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '是否展示',
+    `is_show` tinyint NOT NULL DEFAULT 0 COMMENT '是否展示',
     `campus_id` bigint NOT NULL COMMENT '校区编号',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -69,7 +69,7 @@ CREATE TABLE `school_course`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
     `introduction` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '介绍',
-    `teaching_mode` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '教学模式',
+    `teaching_mode` tinyint NOT NULL DEFAULT 1 COMMENT '教学模式',
     `subject_id` bigint NOT NULL COMMENT '科目编号',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -87,11 +87,11 @@ CREATE TABLE `school_course`  (
 DROP TABLE IF EXISTS `school_course_fee`;
 CREATE TABLE `school_course_fee`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-    `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '收费类型',
+    `type` tinyint NOT NULL DEFAULT 0 COMMENT '收费类型',
     `class_hour` smallint DEFAULT 0 COMMENT '课时',
     `total_price` int DEFAULT 0 COMMENT '价格',
     `remark` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
-    `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '状态',
+    `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态',
     `course_id` bigint NOT NULL COMMENT '课程编号',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -111,7 +111,7 @@ CREATE TABLE `school_class`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名称',
     `max_students` smallint NOT NULL DEFAULT 0 COMMENT '名称',
-    `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '状态',
+    `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态',
     `plan_open_date` date NULL COMMENT '计划开班日期',
     `open_date` date NULL COMMENT '开班时间',
     `remark` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
@@ -146,7 +146,7 @@ CREATE TABLE `school_teacher`  (
     PRIMARY KEY (`id`) USING BTREE,
     CONSTRAINT `school_teacher_fk_1` FOREIGN KEY (`user_id`) REFERENCES `system_users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_teacher_fk_2` FOREIGN KEY (`campus_id`) REFERENCES `school_campus` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '教室表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '教师表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for school_student
@@ -160,7 +160,7 @@ CREATE TABLE `school_student`  (
     `contact_relationship` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '父母' COMMENT '联系人关系',
     `contact_phone` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '联系热门电话',
     `attendance_date` date NOT NULL  COMMENT '入学时间',
-    `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '状态',
+    `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态',
     `expire_date` date NOT NULL COMMENT '过期时间',
     `campus_id` bigint NOT NULL COMMENT '校区编号',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '创建者',
@@ -223,7 +223,7 @@ CREATE TABLE `school_class_student`  (
 DROP TABLE IF EXISTS `school_timetable`;
 CREATE TABLE `school_timetable`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-    `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '类型',
+    `type` tinyint NOT NULL DEFAULT 1 COMMENT '类型',
     `days_weekly` tinyint NOT NULL DEFAULT 0 COMMENT '上课时间',
     `begin_date` date NOT NULL COMMENT '开始日期',
     `end_date` date NOT NULL COMMENT '结束日期',
@@ -416,7 +416,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室管理', '', 2, 0, 1301,
+    '教师管理', '', 2, 0, 1301,
     'teacher', '', 'school/teacher/index', 0
 );
 
@@ -430,7 +430,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室查询', 'school:teacher:query', 3, 1, @parentId,
+    '教师查询', 'school:teacher:query', 3, 1, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -438,7 +438,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室创建', 'school:teacher:create', 3, 2, @parentId,
+    '教师创建', 'school:teacher:create', 3, 2, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -446,7 +446,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室更新', 'school:teacher:update', 3, 3, @parentId,
+    '教师更新', 'school:teacher:update', 3, 3, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -454,7 +454,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室删除', 'school:teacher:delete', 3, 4, @parentId,
+    '教师删除', 'school:teacher:delete', 3, 4, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -462,7 +462,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '教室导出', 'school:teacher:export', 3, 5, @parentId,
+    '教师导出', 'school:teacher:export', 3, 5, @parentId,
     '', '', '', 0
 );
 -- 菜单 SQL

@@ -32,3 +32,8 @@ export const deleteCourseFeeApi = async (id: number) => {
 export const exportCourseFeeApi = async (params: CourseFeeExcelReqVO) => {
   return await request.download({ url: '/school/course-fee/export-excel', params })
 }
+
+// 查询课程收费选项
+export const getCourseFeeOptionsApi = async () => {
+  return await request.get({ url: '/school/course-fee/options' })
+}

@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.school.service.course;
 
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +79,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<CourseDO> getCourseList(CourseExportReqVO exportReqVO) {
         return courseMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<CourseDO> getCourseOptions() {
+        return courseMapper.selectList(new QueryWrapper<CourseDO>().select("id", "name"));
     }
 
 }

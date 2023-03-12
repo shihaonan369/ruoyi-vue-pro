@@ -32,3 +32,8 @@ export const deleteCampusApi = async (id: number) => {
 export const exportCampusApi = async (params: CampusExcelReqVO) => {
   return await request.download({ url: '/school/campus/export-excel', params })
 }
+
+// 查询校区选项
+export const getCampusOptionsApi = async () => {
+  return await request.get({ url: '/school/campus/options' })
+}

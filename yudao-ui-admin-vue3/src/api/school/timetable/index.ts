@@ -32,3 +32,8 @@ export const deleteTimetableApi = async (id: number) => {
 export const exportTimetableApi = async (params: TimetableExcelReqVO) => {
   return await request.download({ url: '/school/timetable/export-excel', params })
 }
+
+// 查询课表列表
+export const getTimetableListApi = async (params: TimetableVO) => {
+  return await request.get({ url: '/school/timetable/list-by-filter', params })
+}

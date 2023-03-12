@@ -1,5 +1,8 @@
 package cn.iocoder.yudao.module.school.controller.admin.coursefee;
 
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
+import cn.iocoder.yudao.module.school.convert.subject.SubjectConvert;
+import cn.iocoder.yudao.module.school.dal.dataobject.subject.SubjectDO;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -95,6 +98,14 @@ public class CourseFeeController {
         // 导出 Excel
         List<CourseFeeExcelVO> datas = CourseFeeConvert.INSTANCE.convertList02(list);
         ExcelUtils.write(response, "课程收费.xls", "数据", CourseFeeExcelVO.class, datas);
+    }
+
+    @GetMapping("/options")
+    @ApiOperation("选项")
+    @PreAuthorize("@ss.hasPermission('school:course-fee:query')")
+    public CommonResult<List<OptionVo>> getCourseFeeOptions() {
+        List<CourseFeeDO> list = courseFeeService.getCourseFeeOptions();
+        return success(CourseFeeConvert.INSTANCE.convertOptionList(list));
     }
 
 }

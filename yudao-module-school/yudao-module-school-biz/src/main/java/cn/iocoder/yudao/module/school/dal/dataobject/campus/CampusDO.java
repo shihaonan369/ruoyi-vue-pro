@@ -31,10 +31,8 @@ public class CampusDO extends BaseDO {
     private String name;
     /**
      * 校区类型
-     *
-     * 枚举 {@link TODO school_campus_type 对应的类}
      */
-    private String campusType;
+    private Integer campusType;
     /**
      * 电话
      */
@@ -44,9 +42,9 @@ public class CampusDO extends BaseDO {
      */
     private String brandName;
     /**
-     * logoURL
+     * logoUrl
      */
-    private String logoURL;
+    private String logoUrl;
     /**
      * 口号
      */

@@ -36,7 +36,7 @@ public class ClzDO extends BaseDO {
     /**
      * 状态
      */
-    private String status;
+    private Integer status;
     /**
      * 计划开班日期
      */

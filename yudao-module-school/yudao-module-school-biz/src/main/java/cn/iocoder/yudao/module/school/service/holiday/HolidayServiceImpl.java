@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.school.service.holiday;
 
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +79,11 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     public List<HolidayDO> getHolidayList(HolidayExportReqVO exportReqVO) {
         return holidayMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<HolidayDO> getHolidayOptions() {
+        return holidayMapper.selectList(new QueryWrapper<HolidayDO>().select("id", "name"));
     }
 
 }

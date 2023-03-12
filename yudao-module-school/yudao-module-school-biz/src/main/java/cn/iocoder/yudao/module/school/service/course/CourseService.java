@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.course;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.course.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.course.CourseDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,12 @@ public interface CourseService {
      * @return 课程列表
      */
     List<CourseDO> getCourseList(CourseExportReqVO exportReqVO);
+
+    /**
+     * 获取课程选项
+     *
+     * @return 课程选项
+     */
+    List<CourseDO> getCourseOptions();
 
 }

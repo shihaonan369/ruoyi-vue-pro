@@ -27,10 +27,8 @@ public class TimetableDO extends BaseDO {
     private Long id;
     /**
      * 类型
-     *
-     * 枚举 {@link TODO school_timetable_type 对应的类}
      */
-    private String type;
+    private Integer type;
     /**
      * 上课时间
      */

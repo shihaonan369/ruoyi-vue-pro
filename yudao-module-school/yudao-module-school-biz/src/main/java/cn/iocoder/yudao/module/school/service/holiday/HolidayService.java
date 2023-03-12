@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.holiday;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.holiday.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.holiday.HolidayDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,12 @@ public interface HolidayService {
      * @return 假期列表
      */
     List<HolidayDO> getHolidayList(HolidayExportReqVO exportReqVO);
+
+    /**
+     * 获取假期选项
+     *
+     * @return 假期选项
+     */
+    List<HolidayDO> getHolidayOptions();
 
 }

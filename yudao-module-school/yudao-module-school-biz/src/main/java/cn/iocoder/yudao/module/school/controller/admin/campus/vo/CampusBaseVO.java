@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.module.school.controller.admin.campus.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import java.util.*;
 import io.swagger.annotations.*;
@@ -15,13 +16,16 @@ import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_
 @Data
 public class CampusBaseVO {
 
+    @ApiModelProperty(value = "校区编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "名称", required = true)
     @NotNull(message = "名称不能为空")
     private String name;
 
     @ApiModelProperty(value = "校区类型", required = true)
     @NotNull(message = "校区类型不能为空")
-    private String campusType;
+    private Integer campusType;
 
     @ApiModelProperty(value = "电话", required = true)
     @NotNull(message = "电话不能为空")
@@ -31,9 +35,9 @@ public class CampusBaseVO {
     @NotNull(message = "品牌名称不能为空")
     private String brandName;
 
-    @ApiModelProperty(value = "logoURL", required = true)
-    @NotNull(message = "logoURL不能为空")
-    private String logoURL;
+    @ApiModelProperty(value = "logoUrl", required = true)
+    @NotNull(message = "logoUrl不能为空")
+    private String logoUrl;
 
     @ApiModelProperty(value = "口号", required = true)
     @NotNull(message = "口号不能为空")
@@ -50,6 +54,7 @@ public class CampusBaseVO {
     @ApiModelProperty(value = "建校时间", required = true)
     @NotNull(message = "建校时间不能为空")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    @JsonFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
     private Date foundDate;
 
 }

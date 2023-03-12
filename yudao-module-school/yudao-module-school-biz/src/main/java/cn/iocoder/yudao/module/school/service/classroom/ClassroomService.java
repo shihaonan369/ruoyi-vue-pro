@@ -3,8 +3,10 @@ package cn.iocoder.yudao.module.school.service.classroom;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.classroom.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.classroom.ClassroomDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 /**
  * 教室 Service 接口
@@ -66,5 +68,12 @@ public interface ClassroomService {
      * @return 教室列表
      */
     List<ClassroomDO> getClassroomList(ClassroomExportReqVO exportReqVO);
+
+    /**
+     * 获取教室选项
+     *
+     * @return 教室选项
+     */
+    List<ClassroomDO> getClassroomOptions();
 
 }

@@ -27,10 +27,8 @@ public class CourseFeeDO extends BaseDO {
     private Long id;
     /**
      * 收费类型
-     *
-     * 枚举 {@link TODO school_course_fee_type 对应的类}
      */
-    private String type;
+    private Integer type;
     /**
      * 课时
      */
@@ -46,7 +44,7 @@ public class CourseFeeDO extends BaseDO {
     /**
      * 状态
      */
-    private String status;
+    private Integer status;
     /**
      * 课程编号
      */

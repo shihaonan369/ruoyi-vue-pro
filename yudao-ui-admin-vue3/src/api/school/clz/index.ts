@@ -32,3 +32,13 @@ export const deleteClzApi = async (id: number) => {
 export const exportClzApi = async (params: ClzExcelReqVO) => {
   return await request.download({ url: '/school/clz/export-excel', params })
 }
+
+// 查询班级选项
+export const getClzOptionsApi = async () => {
+  return await request.get({ url: '/school/clz/options' })
+}
+
+// 查询班级列表
+export const getClzListApi = async (params: ClzVO) => {
+  return await request.get({ url: '/school/clz/list-by-filter', params })
+}

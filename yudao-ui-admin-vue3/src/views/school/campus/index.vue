@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as CampusApi from '@/api/school/campus'
-import type { CampusVO } from '@/api/school/Campus/types'
+import type { CampusVO } from '@/api/school/campus/types'
 import { FormExpose } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useTable } from '@/hooks/web/useTable'

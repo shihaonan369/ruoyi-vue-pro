@@ -1,5 +1,12 @@
 package cn.iocoder.yudao.module.school.controller.admin.timetable;
 
+import cn.iocoder.yudao.module.school.controller.admin.clz.vo.ClzBaseVO;
+import cn.iocoder.yudao.module.school.controller.admin.clz.vo.ClzRespVO;
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
+import cn.iocoder.yudao.module.school.convert.campus.CampusConvert;
+import cn.iocoder.yudao.module.school.convert.clz.ClzConvert;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import cn.iocoder.yudao.module.school.dal.dataobject.clz.ClzDO;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -95,6 +102,14 @@ public class TimetableController {
         // 导出 Excel
         List<TimetableExcelVO> datas = TimetableConvert.INSTANCE.convertList02(list);
         ExcelUtils.write(response, "课程.xls", "数据", TimetableExcelVO.class, datas);
+    }
+
+    @GetMapping("/list-by-filter")
+    @ApiOperation("获取课程列表")
+    @PreAuthorize("@ss.hasPermission('school:timetable:query')")
+    public CommonResult<List<TimetableRespVO>> getClzList(@Valid TimetableBaseVO reqVO) {
+        List<TimetableDO> list = timetableService.getTimetableList(reqVO);
+        return success(TimetableConvert.INSTANCE.convertList(list));
     }
 
 }

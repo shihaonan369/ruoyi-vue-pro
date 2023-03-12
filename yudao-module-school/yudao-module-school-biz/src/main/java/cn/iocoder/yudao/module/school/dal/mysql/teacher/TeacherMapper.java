@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import cn.iocoder.yudao.module.school.controller.admin.teacher.vo.*;
 
 /**
- * 教室 Mapper
+ * 教师 Mapper
  *
  * @author 芋道源码
  */

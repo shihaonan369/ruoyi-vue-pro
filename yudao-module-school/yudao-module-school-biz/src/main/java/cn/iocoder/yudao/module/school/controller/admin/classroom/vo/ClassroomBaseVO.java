@@ -12,6 +12,9 @@ import javax.validation.constraints.*;
 @Data
 public class ClassroomBaseVO {
 
+    @ApiModelProperty(value = "教室编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "名称", required = true)
     @NotNull(message = "名称不能为空")
     private String name;

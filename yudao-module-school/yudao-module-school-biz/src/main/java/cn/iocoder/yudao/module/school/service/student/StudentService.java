@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.school.service.student;
 import java.util.*;
 import javax.validation.*;
 import cn.iocoder.yudao.module.school.controller.admin.student.vo.*;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.student.StudentDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
@@ -66,5 +67,12 @@ public interface StudentService {
      * @return 学生列表
      */
     List<StudentDO> getStudentList(StudentExportReqVO exportReqVO);
+
+    /**
+     * 获取学生选项
+     *
+     * @return 学生选项
+     */
+    List<StudentDO> getStudentOptions();
 
 }

@@ -15,9 +15,12 @@ import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_
 @Data
 public class TimetableBaseVO {
 
+    @ApiModelProperty(value = "课程编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "类型", required = true)
     @NotNull(message = "类型不能为空")
-    private String type;
+    private Integer type;
 
     @ApiModelProperty(value = "上课时间", required = true)
     @NotNull(message = "上课时间不能为空")

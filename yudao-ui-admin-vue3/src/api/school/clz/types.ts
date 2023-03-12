@@ -1,13 +1,14 @@
 export type ClzVO = {
-  id: number
-  name: string
-  maxStudents: number
-  status: string
-  planOpenDate: Date
-  openDate: Date
-  remark: string
-  courseId: number
-  headTeacherId: number
+  course?: any
+  id?: number
+  name?: string
+  maxStudents?: number
+  status?: string
+  planOpenDate?: Date
+  openDate?: Date
+  remark?: string
+  courseId?: number
+  headTeacherId?: number
 }
 
 export type ClzPageReqVO = {

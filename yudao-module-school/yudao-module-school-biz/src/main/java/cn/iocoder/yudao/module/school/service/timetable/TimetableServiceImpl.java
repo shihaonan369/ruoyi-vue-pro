@@ -1,5 +1,9 @@
 package cn.iocoder.yudao.module.school.service.timetable;
 
+import cn.iocoder.yudao.module.school.controller.admin.clz.vo.ClzBaseVO;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import cn.iocoder.yudao.module.school.dal.dataobject.clz.ClzDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +81,16 @@ public class TimetableServiceImpl implements TimetableService {
     @Override
     public List<TimetableDO> getTimetableList(TimetableExportReqVO exportReqVO) {
         return timetableMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<TimetableDO> getTimetableOptions() {
+        return timetableMapper.selectList(new QueryWrapper<TimetableDO>().select("id", "name"));
+    }
+
+    @Override
+    public List<TimetableDO> getTimetableList(TimetableBaseVO entity) {
+        return timetableMapper.selectList(entity);
     }
 
 }

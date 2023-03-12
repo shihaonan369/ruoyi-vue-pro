@@ -5,6 +5,8 @@ import java.util.*;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.iocoder.yudao.framework.mybatis.core.mapper.BaseMapperX;
+import cn.iocoder.yudao.module.school.controller.admin.classstudent.vo.ClassStudentBaseVO;
+import cn.iocoder.yudao.module.school.dal.dataobject.classstudent.ClassStudentDO;
 import cn.iocoder.yudao.module.school.dal.dataobject.clz.ClzDO;
 import org.apache.ibatis.annotations.Mapper;
 import cn.iocoder.yudao.module.school.controller.admin.clz.vo.*;
@@ -41,6 +43,18 @@ public interface ClzMapper extends BaseMapperX<ClzDO> {
                 .eqIfPresent(ClzDO::getCourseId, reqVO.getCourseId())
                 .eqIfPresent(ClzDO::getHeadTeacherId, reqVO.getHeadTeacherId())
                 .orderByDesc(ClzDO::getId));
+    }
+
+    default List<ClzDO> selectList(ClzBaseVO reqVO) {
+        return selectList(new LambdaQueryWrapperX<ClzDO>()
+                .eqIfPresent(ClzDO::getName, reqVO.getName())
+                .eqIfPresent(ClzDO::getMaxStudents, reqVO.getMaxStudents())
+                .eqIfPresent(ClzDO::getStatus, reqVO.getStatus())
+                .eqIfPresent(ClzDO::getPlanOpenDate, reqVO.getPlanOpenDate())
+                .eqIfPresent(ClzDO::getOpenDate, reqVO.getOpenDate())
+                .eqIfPresent(ClzDO::getRemark, reqVO.getRemark())
+                .eqIfPresent(ClzDO::getCourseId, reqVO.getCourseId())
+                .orderByAsc(ClzDO::getName));
     }
 
 }

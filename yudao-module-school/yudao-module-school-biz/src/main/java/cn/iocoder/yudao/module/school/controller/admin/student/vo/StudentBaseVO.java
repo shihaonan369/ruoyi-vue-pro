@@ -15,6 +15,9 @@ import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_
 @Data
 public class StudentBaseVO {
 
+    @ApiModelProperty(value = "学生编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "姓名", required = true)
     @NotNull(message = "姓名不能为空")
     private String name;
@@ -42,7 +45,7 @@ public class StudentBaseVO {
 
     @ApiModelProperty(value = "状态", required = true)
     @NotNull(message = "状态不能为空")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "过期时间", required = true)
     @NotNull(message = "过期时间不能为空")

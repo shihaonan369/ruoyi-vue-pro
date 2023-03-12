@@ -1,3 +1,5 @@
+import { getCampusOptionsApi } from '@/api/school/campus'
+import { OptionVO } from '@/api/school/common/types'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 import { useI18n } from '@/hooks/web/useI18n'
 import { reactive } from 'vue'
@@ -7,6 +9,7 @@ export const rules = reactive({
   name: [{ required: true, message: '名称不能为空', trigger: 'blur' }],
   campusId: [{ required: true, message: '校区编号不能为空', trigger: 'change' }]
 })
+export const campusOptions: OptionVO[] = await getCampusOptionsApi()
 // CrudSchema
 const crudSchemas = reactive<CrudSchema[]>([
   {
@@ -34,6 +37,16 @@ const crudSchemas = reactive<CrudSchema[]>([
     label: '校区编号',
     field: 'campusId',
     form: {
+      show: true,
+      component: 'Select',
+      componentProps: {
+        options: campusOptions,
+        optionsAlias: {
+          valueField: 'id'
+        }
+      }
+    },
+    detail: {
       show: true
     },
     search: {

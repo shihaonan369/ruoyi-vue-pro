@@ -4,7 +4,10 @@ import java.util.*;
 
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import cn.iocoder.yudao.module.school.controller.admin.course.vo.*;
 import cn.iocoder.yudao.module.school.dal.dataobject.course.CourseDO;
@@ -30,5 +33,10 @@ public interface CourseConvert {
     PageResult<CourseRespVO> convertPage(PageResult<CourseDO> page);
 
     List<CourseExcelVO> convertList02(List<CourseDO> list);
+
+    @Mapping(target = "label", source = "name")
+    OptionVo convertOption(CourseDO bean);
+
+    List<OptionVo> convertOptionList(List<CourseDO> list);
 
 }

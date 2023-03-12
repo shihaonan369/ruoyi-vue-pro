@@ -9,7 +9,7 @@ export const rules = reactive({
   campusType: [{ required: true, message: '校区类型不能为空', trigger: 'change' }],
   phone: [{ required: true, message: '电话不能为空', trigger: 'blur' }],
   brandName: [{ required: true, message: '品牌名称不能为空', trigger: 'blur' }],
-  logoURL: [{ required: true, message: 'logoURL不能为空', trigger: 'blur' }],
+  logoUrl: [{ required: true, message: 'logoUrl不能为空', trigger: 'blur' }],
   slogan: [{ required: true, message: '口号不能为空', trigger: 'blur' }],
   introduction: [{ required: true, message: '介绍不能为空', trigger: 'blur' }],
   location: [{ required: true, message: '地址不能为空', trigger: 'blur' }],
@@ -67,8 +67,8 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    label: 'logoURL',
-    field: 'logoURL',
+    label: 'logoUrl',
+    field: 'logoUrl',
     form: {
       show: true
     },

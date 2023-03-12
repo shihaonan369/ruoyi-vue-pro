@@ -32,3 +32,8 @@ export const deleteClassStudentApi = async (id: number) => {
 export const exportClassStudentApi = async (params: ClassStudentExcelReqVO) => {
   return await request.download({ url: '/school/class-student/export-excel', params })
 }
+
+// 查询班级学生列表
+export const getClassStudentListApi = async (params: ClassStudentVO) => {
+  return await request.get({ url: '/school/class-student/list-by-filter', params })
+}

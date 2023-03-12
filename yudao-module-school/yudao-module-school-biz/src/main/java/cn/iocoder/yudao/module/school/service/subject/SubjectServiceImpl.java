@@ -1,5 +1,7 @@
 package cn.iocoder.yudao.module.school.service.subject;
 
+import cn.iocoder.yudao.module.school.dal.dataobject.campus.CampusDO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -77,6 +79,11 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public List<SubjectDO> getSubjectList(SubjectExportReqVO exportReqVO) {
         return subjectMapper.selectList(exportReqVO);
+    }
+
+    @Override
+    public List<SubjectDO> getSubjectOptions() {
+        return subjectMapper.selectList(new QueryWrapper<SubjectDO>().select("id", "name"));
     }
 
 }

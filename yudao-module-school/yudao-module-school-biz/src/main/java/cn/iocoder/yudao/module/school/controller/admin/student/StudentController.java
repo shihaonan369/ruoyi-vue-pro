@@ -1,5 +1,8 @@
 package cn.iocoder.yudao.module.school.controller.admin.student;
 
+import cn.iocoder.yudao.module.school.controller.admin.common.vo.OptionVo;
+import cn.iocoder.yudao.module.school.convert.subject.SubjectConvert;
+import cn.iocoder.yudao.module.school.dal.dataobject.subject.SubjectDO;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -97,4 +100,11 @@ public class StudentController {
         ExcelUtils.write(response, "学生.xls", "数据", StudentExcelVO.class, datas);
     }
 
+    @GetMapping("/options")
+    @ApiOperation("选项")
+    @PreAuthorize("@ss.hasPermission('school:student:query')")
+    public CommonResult<List<OptionVo>> getStudentOptions() {
+        List<StudentDO> list = studentService.getStudentOptions();
+        return success(StudentConvert.INSTANCE.convertOptionList(list));
+    }
 }

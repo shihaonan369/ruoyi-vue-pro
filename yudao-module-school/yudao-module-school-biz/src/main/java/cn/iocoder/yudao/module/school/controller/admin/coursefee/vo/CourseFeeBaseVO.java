@@ -12,9 +12,12 @@ import javax.validation.constraints.*;
 @Data
 public class CourseFeeBaseVO {
 
+    @ApiModelProperty(value = "课程收费编号", required = true, example = "1")
+    private Long id;
+
     @ApiModelProperty(value = "收费类型", required = true)
     @NotNull(message = "收费类型不能为空")
-    private String type;
+    private Integer type;
 
     @ApiModelProperty(value = "课时")
     private Integer classHour;
@@ -28,7 +31,7 @@ public class CourseFeeBaseVO {
 
     @ApiModelProperty(value = "状态", required = true)
     @NotNull(message = "状态不能为空")
-    private String status;
+    private Integer status;
 
     @ApiModelProperty(value = "课程编号", required = true)
     @NotNull(message = "课程编号不能为空")

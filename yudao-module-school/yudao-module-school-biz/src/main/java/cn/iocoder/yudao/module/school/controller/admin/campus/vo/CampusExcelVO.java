@@ -30,8 +30,8 @@ public class CampusExcelVO {
     @ExcelProperty("品牌名称")
     private String brandName;
 
-    @ExcelProperty("logoURL")
-    private String logoURL;
+    @ExcelProperty("logoUrl")
+    private String logoUrl;
 
     @ExcelProperty("口号")
     private String slogan;

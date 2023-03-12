@@ -35,4 +35,15 @@ public interface ClassStudentMapper extends BaseMapperX<ClassStudentDO> {
                 .orderByDesc(ClassStudentDO::getId));
     }
 
+    default List<ClassStudentDO> selectList(ClassStudentBaseVO reqVO) {
+        return selectList(new LambdaQueryWrapperX<ClassStudentDO>()
+                .eqIfPresent(ClassStudentDO::getNumber, reqVO.getNumber())
+                .eqIfPresent(ClassStudentDO::getClassHour, reqVO.getClassHour())
+                .eqIfPresent(ClassStudentDO::getTotalClassHour, reqVO.getTotalClassHour())
+                .eqIfPresent(ClassStudentDO::getEnterDate, reqVO.getEnterDate())
+                .eqIfPresent(ClassStudentDO::getClassId, reqVO.getClassId())
+                .eqIfPresent(ClassStudentDO::getStudentId, reqVO.getStudentId())
+                .orderByAsc(ClassStudentDO::getNumber));
+    }
+
 }
