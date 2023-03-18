@@ -3,32 +3,32 @@ import { TimetableExcelReqVO, TimetablePageReqVO, TimetableVO } from './types'
 
 const request = useAxios()
 
-// 查询课程列表
+// 查询课表列表
 export const getTimetablePageApi = async (params: TimetablePageReqVO) => {
   return await request.get({ url: '/school/timetable/page', params })
 }
 
-// 查询课程详情
+// 查询课表详情
 export const getTimetableApi = async (id: number) => {
   return await request.get({ url: '/school/timetable/get?id=' + id })
 }
 
-// 新增课程
+// 新增课表
 export const createTimetableApi = async (data: TimetableVO) => {
   return await request.post({ url: '/school/timetable/create', data })
 }
 
-// 修改课程
+// 修改课表
 export const updateTimetableApi = async (data: TimetableVO) => {
   return await request.put({ url: '/school/timetable/update', data })
 }
 
-// 删除课程
+// 删除课表
 export const deleteTimetableApi = async (id: number) => {
   return await request.delete({ url: '/school/timetable/delete?id=' + id })
 }
 
-// 导出课程 Excel
+// 导出课表 Excel
 export const exportTimetableApi = async (params: TimetableExcelReqVO) => {
   return await request.download({ url: '/school/timetable/export-excel', params })
 }

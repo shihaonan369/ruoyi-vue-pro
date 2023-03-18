@@ -4,7 +4,7 @@ import lombok.*;
 import java.util.*;
 import io.swagger.annotations.*;
 
-@ApiModel("管理后台 - 课程 Response VO")
+@ApiModel("管理后台 - 课表 Response VO")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

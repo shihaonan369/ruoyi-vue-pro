@@ -124,12 +124,12 @@ const addClass = () => {
   })
 }
 
-/**删除课程 */
+/**删除课表 */
 const delClass = (classId) => {
   deleteClzApi(classId)
 }
 
-/**修改课程 */
+/**修改课表 */
 const modifyClass = () => {
   updateClzApi({
     course: editClassInfo.course,
@@ -211,7 +211,7 @@ onMounted(() => {
     <div class="class-manage">
       <el-table :data="classesInfo">
         <el-table-column prop="name" label="名称" />
-        <el-table-column prop="course.name" label="课程" />
+        <el-table-column prop="course.name" label="课表" />
         <el-table-column prop="opendate" label="开课日期" />
         <el-table-column prop="maxstudents" label="学生人数" />
         <el-table-column prop="headteacher.name" label="班主任" />
@@ -246,7 +246,7 @@ onMounted(() => {
                 <el-form-item label="班级名称" prop="name" required>
                   <el-input type="textarea" v-model="editClassInfo.name" maxlength="16" />
                 </el-form-item>
-                <el-form-item label="选择课程" prop="course" required>
+                <el-form-item label="选择课表" prop="course" required>
                   <el-select v-model="editClassInfo.course">
                     <el-option
                       v-for="course in courseOptions"

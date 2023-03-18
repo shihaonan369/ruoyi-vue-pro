@@ -11,14 +11,14 @@ import cn.iocoder.yudao.module.school.dal.dataobject.timetable.TimetableDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
 /**
- * 课程 Service 接口
+ * 课表 Service 接口
  *
  * @author 芋道源码
  */
 public interface TimetableService {
 
     /**
-     * 创建课程
+     * 创建课表
      *
      * @param createReqVO 创建信息
      * @return 编号
@@ -26,63 +26,63 @@ public interface TimetableService {
     Long createTimetable(@Valid TimetableCreateReqVO createReqVO);
 
     /**
-     * 更新课程
+     * 更新课表
      *
      * @param updateReqVO 更新信息
      */
     void updateTimetable(@Valid TimetableUpdateReqVO updateReqVO);
 
     /**
-     * 删除课程
+     * 删除课表
      *
      * @param id 编号
      */
     void deleteTimetable(Long id);
 
     /**
-     * 获得课程
+     * 获得课表
      *
      * @param id 编号
-     * @return 课程
+     * @return 课表
      */
     TimetableDO getTimetable(Long id);
 
     /**
-     * 获得课程列表
+     * 获得课表列表
      *
      * @param ids 编号
-     * @return 课程列表
+     * @return 课表列表
      */
     List<TimetableDO> getTimetableList(Collection<Long> ids);
 
     /**
-     * 获得课程分页
+     * 获得课表分页
      *
      * @param pageReqVO 分页查询
-     * @return 课程分页
+     * @return 课表分页
      */
     PageResult<TimetableDO> getTimetablePage(TimetablePageReqVO pageReqVO);
 
     /**
-     * 获得课程列表, 用于 Excel 导出
+     * 获得课表列表, 用于 Excel 导出
      *
      * @param exportReqVO 查询条件
-     * @return 课程列表
+     * @return 课表列表
      */
     List<TimetableDO> getTimetableList(TimetableExportReqVO exportReqVO);
 
     /**
-     * 获取课程选项
+     * 获取课表选项
      *
-     * @return 课程选项
+     * @return 课表选项
      */
     List<TimetableDO> getTimetableOptions();
 
     /**
-     * 获取课程列表
+     * 获取课表列表
      *
      * @param reqVO 查询条件
-     * @return 课程列表
+     * @return 课表列表
      */
     List<TimetableDO> getTimetableList(TimetableBaseVO reqVO);
 

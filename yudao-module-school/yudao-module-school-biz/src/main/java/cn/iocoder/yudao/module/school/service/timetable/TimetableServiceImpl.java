@@ -20,7 +20,7 @@ import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionU
 import static cn.iocoder.yudao.module.school.enums.ErrorCodeConstants.*;
 
 /**
- * 课程 Service 实现类
+ * 课表 Service 实现类
  *
  * @author 芋道源码
  */

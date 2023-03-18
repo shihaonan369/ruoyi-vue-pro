@@ -242,7 +242,7 @@ CREATE TABLE `school_timetable`  (
     CONSTRAINT `school_timetable_fk_1` FOREIGN KEY (`class_id`) REFERENCES `school_class` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_timetable_fk_2` FOREIGN KEY (`teacher_id`) REFERENCES `school_student` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `school_timetable_fk_3` FOREIGN KEY (`classroom_id`) REFERENCES `school_classroom` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '课程表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '课表表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for school_holiday
@@ -306,7 +306,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程管理', '', 2, 0, 1301,
+    '课表管理', '', 2, 0, 1301,
     'timetable', '', 'school/timetable/index', 0
 );
 
@@ -320,7 +320,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程查询', 'school:timetable:query', 3, 1, @parentId,
+    '课表查询', 'school:timetable:query', 3, 1, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -328,7 +328,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程创建', 'school:timetable:create', 3, 2, @parentId,
+    '课表创建', 'school:timetable:create', 3, 2, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -336,7 +336,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程更新', 'school:timetable:update', 3, 3, @parentId,
+    '课表更新', 'school:timetable:update', 3, 3, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -344,7 +344,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程删除', 'school:timetable:delete', 3, 4, @parentId,
+    '课表删除', 'school:timetable:delete', 3, 4, @parentId,
     '', '', '', 0
 );
 INSERT INTO system_menu(
@@ -352,7 +352,7 @@ INSERT INTO system_menu(
     path, icon, component, status
 )
 VALUES (
-    '课程导出', 'school:timetable:export', 3, 5, @parentId,
+    '课表导出', 'school:timetable:export', 3, 5, @parentId,
     '', '', '', 0
 );
 -- 菜单 SQL

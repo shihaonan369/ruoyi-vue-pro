@@ -33,7 +33,7 @@ import cn.iocoder.yudao.module.school.dal.dataobject.timetable.TimetableDO;
 import cn.iocoder.yudao.module.school.convert.timetable.TimetableConvert;
 import cn.iocoder.yudao.module.school.service.timetable.TimetableService;
 
-@Api(tags = "管理后台 - 课程")
+@Api(tags = "管理后台 - 课表")
 @RestController
 @RequestMapping("/school/timetable")
 @Validated
@@ -43,14 +43,14 @@ public class TimetableController {
     private TimetableService timetableService;
 
     @PostMapping("/create")
-    @ApiOperation("创建课程")
+    @ApiOperation("创建课表")
     @PreAuthorize("@ss.hasPermission('school:timetable:create')")
     public CommonResult<Long> createTimetable(@Valid @RequestBody TimetableCreateReqVO createReqVO) {
         return success(timetableService.createTimetable(createReqVO));
     }
 
     @PutMapping("/update")
-    @ApiOperation("更新课程")
+    @ApiOperation("更新课表")
     @PreAuthorize("@ss.hasPermission('school:timetable:update')")
     public CommonResult<Boolean> updateTimetable(@Valid @RequestBody TimetableUpdateReqVO updateReqVO) {
         timetableService.updateTimetable(updateReqVO);
@@ -58,7 +58,7 @@ public class TimetableController {
     }
 
     @DeleteMapping("/delete")
-    @ApiOperation("删除课程")
+    @ApiOperation("删除课表")
     @ApiImplicitParam(name = "id", value = "编号", required = true, dataTypeClass = Long.class)
     @PreAuthorize("@ss.hasPermission('school:timetable:delete')")
     public CommonResult<Boolean> deleteTimetable(@RequestParam("id") Long id) {
@@ -67,7 +67,7 @@ public class TimetableController {
     }
 
     @GetMapping("/get")
-    @ApiOperation("获得课程")
+    @ApiOperation("获得课表")
     @ApiImplicitParam(name = "id", value = "编号", required = true, example = "1024", dataTypeClass = Long.class)
     @PreAuthorize("@ss.hasPermission('school:timetable:query')")
     public CommonResult<TimetableRespVO> getTimetable(@RequestParam("id") Long id) {
@@ -76,7 +76,7 @@ public class TimetableController {
     }
 
     @GetMapping("/list")
-    @ApiOperation("获得课程列表")
+    @ApiOperation("获得课表列表")
     @ApiImplicitParam(name = "ids", value = "编号列表", required = true, example = "1024,2048", dataTypeClass = List.class)
     @PreAuthorize("@ss.hasPermission('school:timetable:query')")
     public CommonResult<List<TimetableRespVO>> getTimetableList(@RequestParam("ids") Collection<Long> ids) {
@@ -85,7 +85,7 @@ public class TimetableController {
     }
 
     @GetMapping("/page")
-    @ApiOperation("获得课程分页")
+    @ApiOperation("获得课表分页")
     @PreAuthorize("@ss.hasPermission('school:timetable:query')")
     public CommonResult<PageResult<TimetableRespVO>> getTimetablePage(@Valid TimetablePageReqVO pageVO) {
         PageResult<TimetableDO> pageResult = timetableService.getTimetablePage(pageVO);
@@ -93,7 +93,7 @@ public class TimetableController {
     }
 
     @GetMapping("/export-excel")
-    @ApiOperation("导出课程 Excel")
+    @ApiOperation("导出课表 Excel")
     @PreAuthorize("@ss.hasPermission('school:timetable:export')")
     @OperateLog(type = EXPORT)
     public void exportTimetableExcel(@Valid TimetableExportReqVO exportReqVO,
@@ -101,11 +101,11 @@ public class TimetableController {
         List<TimetableDO> list = timetableService.getTimetableList(exportReqVO);
         // 导出 Excel
         List<TimetableExcelVO> datas = TimetableConvert.INSTANCE.convertList02(list);
-        ExcelUtils.write(response, "课程.xls", "数据", TimetableExcelVO.class, datas);
+        ExcelUtils.write(response, "课表.xls", "数据", TimetableExcelVO.class, datas);
     }
 
     @GetMapping("/list-by-filter")
-    @ApiOperation("获取课程列表")
+    @ApiOperation("获取课表列表")
     @PreAuthorize("@ss.hasPermission('school:timetable:query')")
     public CommonResult<List<TimetableRespVO>> getClzList(@Valid TimetableBaseVO reqVO) {
         List<TimetableDO> list = timetableService.getTimetableList(reqVO);

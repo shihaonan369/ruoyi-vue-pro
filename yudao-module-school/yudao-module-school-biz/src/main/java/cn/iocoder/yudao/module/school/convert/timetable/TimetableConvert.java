@@ -13,7 +13,7 @@ import cn.iocoder.yudao.module.school.controller.admin.timetable.vo.*;
 import cn.iocoder.yudao.module.school.dal.dataobject.timetable.TimetableDO;
 
 /**
- * 课程 Convert
+ * 课表 Convert
  *
  * @author 芋道源码
  */

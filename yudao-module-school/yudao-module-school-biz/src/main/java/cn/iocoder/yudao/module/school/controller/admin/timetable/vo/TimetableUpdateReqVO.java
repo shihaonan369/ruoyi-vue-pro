@@ -5,7 +5,7 @@ import java.util.*;
 import io.swagger.annotations.*;
 import javax.validation.constraints.*;
 
-@ApiModel("管理后台 - 课程更新 Request VO")
+@ApiModel("管理后台 - 课表更新 Request VO")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

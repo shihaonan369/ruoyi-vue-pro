@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 import cn.iocoder.yudao.module.school.controller.admin.timetable.vo.*;
 
 /**
- * 课程 Mapper
+ * 课表 Mapper
  *
  * @author 芋道源码
  */

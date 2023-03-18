@@ -10,7 +10,7 @@ import cn.iocoder.yudao.framework.excel.core.convert.DictConvert;
 
 
 /**
- * 课程 Excel VO
+ * 课表 Excel VO
  *
  * @author 芋道源码
  */

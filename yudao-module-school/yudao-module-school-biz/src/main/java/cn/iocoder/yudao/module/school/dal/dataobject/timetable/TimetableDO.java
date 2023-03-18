@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;
 
 /**
- * 课程 DO
+ * 课表 DO
  *
  * @author 芋道源码
  */

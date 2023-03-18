@@ -9,13 +9,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import static cn.iocoder.yudao.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
 
 /**
-* 课程 Base VO，提供给添加、修改、详细的子 VO 使用
+* 课表 Base VO，提供给添加、修改、详细的子 VO 使用
 * 如果子 VO 存在差异的字段，请不要添加到这里，影响 Swagger 文档生成
 */
 @Data
 public class TimetableBaseVO {
 
-    @ApiModelProperty(value = "课程编号", required = true, example = "1")
+    @ApiModelProperty(value = "课表编号", required = true, example = "1")
     private Long id;
 
     @ApiModelProperty(value = "类型", required = true)
